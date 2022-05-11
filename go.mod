@@ -14,7 +14,7 @@ require (
 	github.com/coreos/prometheus-operator v0.38.1-0.20200424145508-7e176fda06cc
 	github.com/dsnet/compress v0.0.1
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32 // indirect
-	github.com/go-logr/logr v0.4.0
+	github.com/go-logr/logr v1.2.3
 	github.com/go-logr/zapr v0.4.0
 	github.com/google/go-cmp v0.5.5
 	github.com/itchyny/gojq v0.12.4
