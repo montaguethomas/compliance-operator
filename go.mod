@@ -17,7 +17,7 @@ require (
 	github.com/go-logr/logr v0.4.0
 	github.com/go-logr/zapr v0.4.0
 	github.com/google/go-cmp v0.5.5
-	github.com/itchyny/gojq v0.12.4
+	github.com/itchyny/gojq v0.12.8
 	github.com/jaytaylor/html2text v0.0.0-20200412013138-3577fbdbcff7
 	github.com/onsi/ginkgo v1.16.3
 	github.com/onsi/gomega v1.11.0
@@ -35,7 +35,6 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50 // indirect
 	go.uber.org/zap v1.17.0
-	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	k8s.io/api v0.19.11
 	k8s.io/apimachinery v0.19.11

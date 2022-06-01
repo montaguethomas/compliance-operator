@@ -25,12 +25,15 @@ const (
 	opbacktrack
 	opjump
 	opjumpifnot
+	opindex
+	opindexarray
 	opcall
+	opcallrec
 	oppushpc
 	opcallpc
 	opscope
 	opret
-	opeach
+	opiter
 	opexpbegin
 	opexpend
 	oppathbegin
@@ -73,8 +76,14 @@ func (op opcode) String() string {
 		return "jump"
 	case opjumpifnot:
 		return "jumpifnot"
+	case opindex:
+		return "index"
+	case opindexarray:
+		return "indexarray"
 	case opcall:
 		return "call"
+	case opcallrec:
+		return "callrec"
 	case oppushpc:
 		return "pushpc"
 	case opcallpc:
@@ -83,8 +92,8 @@ func (op opcode) String() string {
 		return "scope"
 	case opret:
 		return "ret"
-	case opeach:
-		return "each"
+	case opiter:
+		return "iter"
 	case opexpbegin:
 		return "expbegin"
 	case opexpend:
