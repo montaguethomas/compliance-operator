@@ -37,9 +37,9 @@ require (
 	go.uber.org/zap v1.17.0
 	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
-	k8s.io/api v0.19.11
-	k8s.io/apimachinery v0.19.11
-	k8s.io/apiserver v0.19.11
+	k8s.io/api v0.24.2
+	k8s.io/apimachinery v0.24.2
+	k8s.io/apiserver v0.24.2
 	k8s.io/client-go v12.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.6.2
 )
