@@ -30,7 +30,7 @@ require (
 	github.com/prometheus/client_model v0.2.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/securego/gosec/v2 v2.8.0
-	github.com/spf13/cobra v1.1.3
+	github.com/spf13/cobra v1.5.0
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50 // indirect
