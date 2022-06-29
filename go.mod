@@ -32,7 +32,7 @@ require (
 	github.com/securego/gosec/v2 v2.8.0
 	github.com/spf13/cobra v1.1.3
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.0
 	github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50 // indirect
 	go.uber.org/zap v1.17.0
 	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
