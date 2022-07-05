@@ -21,7 +21,7 @@ require (
 	github.com/jaytaylor/html2text v0.0.0-20200412013138-3577fbdbcff7
 	github.com/onsi/ginkgo v1.16.3
 	github.com/onsi/gomega v1.11.0
-	github.com/openshift/api v0.0.0-20200829102639-8a3a835f1acf
+	github.com/openshift/api 8324d657dee1
 	github.com/openshift/library-go v0.0.0-20200831114015-2ab0c61c15de
 	github.com/openshift/machine-config-operator v0.0.1-0.20201123223240-d4188ac400eb
 	github.com/operator-framework/operator-sdk v0.19.4
