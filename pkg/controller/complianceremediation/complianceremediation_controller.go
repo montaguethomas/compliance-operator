@@ -651,35 +651,12 @@ func (r *ReconcileComplianceRemediation) verifyAndCompleteKC(obj *unstructured.U
 		return common.NewNonRetriableCtrlError("not applying remediation that doesn't have a matching MachineconfigPool. Scan: %s", scan.Name)
 	}
 
-	// We need to check if there is exsisting kubeletConfigMC present for selected MCP
-	hasCustomKC, kubeletMCName, err := utils.IsMcfgPoolUsingKC(pool)
+	// There can be up to 10 KubeletConfigs per MachineConfigPool. Should the one created for remediations
+	// push it over the limit, MCO will report the issue.
+	// https://github.com/openshift/machine-config-operator/blob/master/docs/KubeletConfigDesign.md
+	// https://github.com/openshift/machine-config-operator/blob/d5fd62323aecc40078b000b80b8e8b28ca13046f/pkg/controller/kubelet-config/helpers.go#L195-L199
 
-	if err != nil {
-		return err
-	}
-	// we need to patch the remediation if there is already a CustomKC present
-	if hasCustomKC {
-
-		kubeletMC := &mcfgv1.MachineConfig{}
-		kMCKey := types.NamespacedName{Name: kubeletMCName}
-
-		if err := r.Client.Get(context.TODO(), kMCKey, kubeletMC); err != nil {
-			return fmt.Errorf("couldn't get current generated KubeletConfig MC: %w", err)
-		}
-		// We need to get name of original kubelet config that used to generate this kubeletconfig machine config
-		// if we can't find owner of generated mc, we will create custom kubeletconfig instead
-		kubeletConfig, err := utils.GetKCFromMC(kubeletMC, r.Client)
-		if err != nil {
-			return fmt.Errorf("couldn't get kubelet config from machine config: %w", err)
-		}
-		// Set kubelet config name
-		obj.SetName(kubeletConfig.GetName())
-		obj.SetLabels(kubeletConfig.GetLabels())
-		return nil
-
-	}
-
-	// We will need to create a kubelet config if there is no custom KC
+	// Create a dedicated kubelet config for selected machine config pool
 	kubeletName := "compliance-operator-kubelet-" + pool.GetName()
 
 	// Set kubelet config name
@@ -689,8 +666,7 @@ func (r *ReconcileComplianceRemediation) verifyAndCompleteKC(obj *unstructured.U
 	NodeSelector := []string{"spec", "machineConfigPoolSelector", "matchLabels"}
 
 	machineConfigPoolSelector := map[string]string{"pools.operator.machineconfiguration.openshift.io/" + pool.GetName(): ""}
-	err = unstructured.SetNestedStringMap(obj.Object, machineConfigPoolSelector, NodeSelector...)
-	if err != nil {
+	if err := unstructured.SetNestedStringMap(obj.Object, machineConfigPoolSelector, NodeSelector...); err != nil {
 		return fmt.Errorf("couldn't set machineConfigPoolSelector for kubeletconfig: %w", err)
 	}
 	return nil
